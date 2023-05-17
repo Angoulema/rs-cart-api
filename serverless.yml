@@ -1,0 +1,40 @@
+service: serverless-example
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  profile: sandx
+  region: us-east-1
+
+functions:
+  main:
+    handler: dist/main.handler
+    events:
+      - http:
+          method: GET
+          path: /ping
+      - http:
+          method: POST
+          path: /api/auth/login
+      - http:
+          method: GET
+          path: /api/profile
+      - http:
+          method: GET
+          path: /api/profile/cart
+      - http:
+          method: POST
+          path: /api/profile/cart
+      - http:
+          method: PUT
+          path: /api/profile/cart
+      - http:
+          method: DELETE
+          path: /api/profile/cart
+      - http:
+          method: POST
+          path: /api/profile/cart/checkout
+
