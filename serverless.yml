@@ -1,4 +1,4 @@
-service: serverless-example
+service: rs-cart-api
 
 plugins:
   - serverless-offline
@@ -10,7 +10,7 @@ provider:
   region: us-east-1
 
 functions:
-  main:
+  cart-main:
     handler: dist/main.handler
     events:
       - http:
