@@ -8,33 +8,42 @@ provider:
   runtime: nodejs14.x
   profile: sandx
   region: us-east-1
+  environment:
+    DATABASE_USERNAME: postgres
+    DATABASE_PASSWORD: postgres
+    DATABASE_NAME: cloud_x
+    DATABASE_PORT: 5432
+    DATABASE_HOST: database-1.cuhhgmxhshep.us-east-1.rds.amazonaws.com
 
 functions:
   cart-main:
     handler: dist/main.handler
     events:
-      - http:
-          method: GET
-          path: /ping
-      - http:
-          method: POST
-          path: /api/auth/login
-      - http:
-          method: GET
-          path: /api/profile
-      - http:
-          method: GET
-          path: /api/profile/cart
-      - http:
-          method: POST
-          path: /api/profile/cart
-      - http:
-          method: PUT
-          path: /api/profile/cart
-      - http:
-          method: DELETE
-          path: /api/profile/cart
-      - http:
-          method: POST
-          path: /api/profile/cart/checkout
+        # - http:
+        #     method: ANY
+        #     path: /
+        # - http:
+        #     method: ANY
+        #     path: '{proxy+}'
+        - http:
+            method: GET
+            path: /ping
+        - http:
+            method: POST
+            path: /api/auth/login
+        - http:
+            method: GET
+            path: /api/profile
+        - http:
+            method: GET
+            path: /api/profile/cart/{id}
+        - http:
+            method: POST
+            path: /api/profile/cart/{id}
+        - http:
+            method: PUT
+            path: /api/profile/cart/{id}
+        - http:
+            method: DELETE
+            path: /api/profile/cart/{id}
 

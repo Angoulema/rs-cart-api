@@ -1,3 +1,5 @@
+import { Statuses } from "../../database/entities/cart.entity";
+
 export type Product = {
   id: string,
   title: string,
@@ -7,11 +9,13 @@ export type Product = {
 
 
 export type CartItem = {
-  product: Product,
+  productId: string,
   count: number,
 }
 
 export type Cart = {
   id: string,
+  userId: string,
+  status: Statuses,
   items: CartItem[],
 }
